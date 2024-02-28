@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Testtömegindex számítás</Text>
+      <Text style={styles.title}>Testtömegindex számítás</Text>
       <TextInput
         style={styles.input}
         placeholder="Súly (kg)"
@@ -32,7 +32,9 @@ export default function App() {
       <TouchableOpacity style={styles.button} onPress={calculateBMI}>
         <Text style={styles.buttonText}>Számítás</Text>
       </TouchableOpacity>
-      {testtomegindex !== null && <Text>A testtömegindexe: {testtomegindex.toFixed(2)}</Text>}
+      {testtomegindex !== null && (
+        <Text style={styles.result}>A testtömegindexe: {testtomegindex.toFixed(2)}</Text>
+      )}
       <StatusBar style="auto" />
     </View>
   );
@@ -40,36 +42,35 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    fontSize: 30,
     flex: 1,
     backgroundColor: 'lightblue',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 350,
+    paddingHorizontal: 400,
   },
   title: {
-    fontSize: 24,
+    fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 50,
   },
   input: {
-    width: '50%',
+    width: '60%',
     height: 50,
     backgroundColor: 'lightgrey',
     borderColor: '#ccc',
-    borderWidth: 3,
-    borderRadius: 8,
+    borderWidth: 6,
+    borderRadius: 10,
     marginTop: 10,
     paddingHorizontal: 10,
     fontSize: 16,
   },
   button: {
     backgroundColor: 'blue',
-    width: '50%',
+    width: '60%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 10,
     marginTop: 50,
   },
   buttonText: {
@@ -78,9 +79,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   result: {
-    fontSize: 60,
-    marginTop: 30,
     fontSize: 30,
-    
+    marginTop: 30,
+    fontWeight: 'bold',
   },
 });
