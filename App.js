@@ -1,10 +1,38 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export default function App() {
+  const [tomeg, setTomeg] = useState('');
+  const [magassag, setMagassag] = useState('');
+  const [testtomegindex, setTesttomegindex] = useState(null);
+
+  const calculateBMI = () => {
+    const bmi = parseFloat(tomeg) / (parseFloat(magassag) * parseFloat(magassag));
+    setTesttomegindex(bmi);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Testtömegindex számítás</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Súly (kg)"
+        keyboardType="numeric"
+        value={tomeg}
+        onChangeText={setTomeg}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Testmagasság (méterben)"
+        keyboardType="numeric"
+        value={magassag}
+        onChangeText={setMagassag}
+      />
+      <TouchableOpacity style={styles.button} onPress={calculateBMI}>
+        <Text style={styles.buttonText}>Számítás</Text>
+      </TouchableOpacity>
+      {testtomegindex !== null && <Text>A testtömegindexe: {testtomegindex.toFixed(2)}</Text>}
       <StatusBar style="auto" />
     </View>
   );
@@ -12,9 +40,47 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    fontSize: 30,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'lightblue',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 350,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 50,
+  },
+  input: {
+    width: '50%',
+    height: 50,
+    backgroundColor: 'lightgrey',
+    borderColor: '#ccc',
+    borderWidth: 3,
+    borderRadius: 8,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    fontSize: 16,
+  },
+  button: {
+    backgroundColor: 'blue',
+    width: '50%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    marginTop: 50,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  result: {
+    fontSize: 60,
+    marginTop: 30,
+    fontSize: 30,
+    
   },
 });
